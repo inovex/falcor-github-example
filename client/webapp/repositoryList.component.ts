@@ -5,7 +5,7 @@ import { FalcorService } from './service/falcor.service';
   selector: 'repository-list',
   template: `<h4 class="h4">Repositories</h4>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let repository of repositories">{{repository.name}}</li>
+      <li class="list-group-item" *ngFor="let repository of repositories">{{repository.name}} <span class="pull-right">Stars: {{repository.stars}}</span></li>
     </ul>` 
 })
 export class RepositoryListComponent implements OnChanges { 
@@ -16,7 +16,7 @@ export class RepositoryListComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (this.login && changes['login'].currentValue !== changes['login'].previousValue) {
       this.falcorService
-        .get('user["' + this.login + '"].repositories[0..10].name')
+        .get('user["' + this.login + '"].repositories[0..10]["name", "stars"]')
         .then((response) => {
           console.log('repositories', response);
           this.repositories = [];

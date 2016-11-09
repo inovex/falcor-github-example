@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   selector: 'follower-list',
   template: `<h4 class="h4">Follower</h4>
     <ul class="list-group">
-      <li class="list-group-item clickable" (click)="selectUser(follower)" *ngFor="let follower of followers">{{follower.name}}</li>
+      <li class="list-group-item clickable" (click)="selectUser(follower)" *ngFor="let follower of followers">{{follower.name}} <span class="pull-right">Stars: {{follower.stars}}</span></li>
     </ul>`
 })
 export class FollowerListComponent implements OnChanges {
@@ -19,9 +19,8 @@ export class FollowerListComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (this.login && changes['login'].currentValue !== changes['login'].previousValue) {
       this.falcorService
-        .get('user["' + this.login + '"].follower[0..10]["name", "login"]')
+        .get('user["' + this.login + '"].follower[0..10]["name", "login", "stars"]')
         .then((response) => {
-          console.log('follower', response);
           this.followers = [];
           for (let key in response.json.user[this.login].follower) {
             this.followers.push(response.json.user[this.login].follower[key]);

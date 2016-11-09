@@ -21,9 +21,8 @@ var FollowingListComponent = (function () {
         var _this = this;
         if (this.login && changes['login'].currentValue !== changes['login'].previousValue) {
             this.falcorService
-                .get('user["' + this.login + '"].following[0..10]["name", "login"]')
+                .get('user["' + this.login + '"].following[0..10]["name", "login", "stars"]')
                 .then(function (response) {
-                console.log('following', response);
                 _this.followings = [];
                 for (var key in response.json.user[_this.login].following) {
                     _this.followings.push(response.json.user[_this.login].following[key]);
@@ -41,7 +40,7 @@ var FollowingListComponent = (function () {
     FollowingListComponent = __decorate([
         core_1.Component({
             selector: 'following-list',
-            template: "<h4 class=\"h4\">Following</h4>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item clickable\" (click)=\"selectUser(following)\" *ngFor=\"let following of followings\">{{following.name}}</li>\n    </ul>"
+            template: "<h4 class=\"h4\">Following</h4>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item clickable\" (click)=\"selectUser(following)\" *ngFor=\"let following of followings\">{{following.name}}<span class=\"pull-right\">Stars: {{following.stars}}</span></li>\n    </ul>"
         }), 
         __metadata('design:paramtypes', [falcor_service_1.FalcorService, router_1.Router])
     ], FollowingListComponent);

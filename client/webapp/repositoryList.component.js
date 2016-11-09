@@ -20,7 +20,7 @@ var RepositoryListComponent = (function () {
         var _this = this;
         if (this.login && changes['login'].currentValue !== changes['login'].previousValue) {
             this.falcorService
-                .get('user["' + this.login + '"].repositories[0..10].name')
+                .get('user["' + this.login + '"].repositories[0..10]["name", "stars"]')
                 .then(function (response) {
                 console.log('repositories', response);
                 _this.repositories = [];
@@ -37,7 +37,7 @@ var RepositoryListComponent = (function () {
     RepositoryListComponent = __decorate([
         core_1.Component({
             selector: 'repository-list',
-            template: "<h4 class=\"h4\">Repositories</h4>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\" *ngFor=\"let repository of repositories\">{{repository.name}}</li>\n    </ul>"
+            template: "<h4 class=\"h4\">Repositories</h4>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\" *ngFor=\"let repository of repositories\">{{repository.name}} <span class=\"pull-right\">Stars: {{repository.stars}}</span></li>\n    </ul>"
         }), 
         __metadata('design:paramtypes', [falcor_service_1.FalcorService])
     ], RepositoryListComponent);
