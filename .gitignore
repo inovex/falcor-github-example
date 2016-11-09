@@ -1,0 +1,6 @@
+**/node_modules/**
+githubAccess.json
+**/*.js.map
+**/typings/**
+**/npm-debug.log
+**/*.swp
