@@ -39,8 +39,4 @@ The client is an angular application that shows an GitHub user.
 
 ### Limited GitHub Requests
 
-When your GitHub request limit is reached, create a GitHub token. Then 
-`mv ../github-lib/githubAccess.json.example ../github-lib/githubAccess.json`
-and insert your token.
-
-### Browser support
+When your GitHub request limit is reached, create a GitHub token. Then use the `setToken` function on gitlab-lib to set your token for further requests.
