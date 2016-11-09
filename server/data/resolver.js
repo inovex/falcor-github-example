@@ -1,6 +1,6 @@
 var $ref = require('falcor-json-graph').ref;
 
-var database = require('../../../github-lib/database');
+var database = require('github-lib');
 var getGitHubUser = database.getGitHubUser;
 var getGitHubRepository = database.getGitHubRepositories;
 

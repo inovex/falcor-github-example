@@ -3,7 +3,7 @@ var Router = require('falcor-router');
 var fetch = require('node-fetch');
 var express = require('express');
 
-var database = require('../../github-lib/database');
+var database = require('github-lib');
 var gitHubToken = require('./githubAccess.json').GITHUB_TOKEN;
 var getGitHubFollower = database.getGitHubFollower;
 var getGitHubFollowing = database.getGitHubFollowings;
