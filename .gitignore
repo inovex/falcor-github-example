@@ -4,3 +4,4 @@ githubAccess.json
 **/typings/**
 **/npm-debug.log
 **/*.swp
+**/.vscode

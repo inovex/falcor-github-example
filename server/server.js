@@ -4,6 +4,7 @@ var fetch = require('node-fetch');
 var express = require('express');
 
 var database = require('../../github-lib/database');
+var gitHubToken = require('./githubAccess.json').GITHUB_TOKEN;
 var getGitHubFollower = database.getGitHubFollower;
 var getGitHubFollowing = database.getGitHubFollowings;
 
@@ -18,7 +19,9 @@ var createUserRepositoryResponse = resolver.createUserRepositoryResponse;
 
 
 var app = express();
-
+if (gitHubToken) {
+    database.setToken(gitHubToken);
+}
 
 
 var routeTable = new Router.createClass([
