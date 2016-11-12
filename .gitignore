@@ -5,3 +5,5 @@ githubAccess.json
 **/npm-debug.log
 **/*.swp
 **/.vscode
+
+server/cache.file
