@@ -2,6 +2,7 @@ var falcorExpress = require('falcor-express');
 var Router = require('falcor-router');
 var fetch = require('node-fetch');
 var express = require('express');
+var cors = require('cors');
 
 var database = require('github-lib');
 var gitHubToken = require('./githubAccess.json').GITHUB_TOKEN;
@@ -67,13 +68,7 @@ var routeTable = new Router.createClass([
     }
 ]);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8000");
-  res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
-
+app.use(cors());
 
 app.use('/model.json', falcorExpress.dataSourceRoute(function(req, res) {
     if (req.method === 'OPTIONS') {

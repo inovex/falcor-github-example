@@ -14,7 +14,11 @@ var core_1 = require('@angular/core');
 var falcor = require('../../node_modules/falcor/dist/falcor.browser.js');
 var FalcorService = (function () {
     function FalcorService() {
-        this.falcorModel = new falcor.Model({ source: new falcor.HttpDataSource('http://localhost:3000/model.json') });
+        this.options = {
+            withCredentials: false,
+            crossDomain: true
+        };
+        this.falcorModel = new falcor.Model({ source: new falcor.HttpDataSource('http://localhost:3000/model.json', this.options) });
     }
     FalcorService.prototype.get = function (selectionPath) {
         return this.falcorModel.get(selectionPath)
