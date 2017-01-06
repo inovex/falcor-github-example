@@ -17,6 +17,7 @@ var createUserStarResponse = resolver.createUserStarResponse;
 var createRepositoryResponse = resolver.createRepositoryResponse;
 var createUserDependenciesResponse = resolver.createUserDependenciesResponse;
 var createUserRepositoryResponse = resolver.createUserRepositoryResponse;
+const test = resolver.test;
 
 
 var app = express();
@@ -57,6 +58,14 @@ var routeTable = new Router.createClass([
     { 
         route: 'userByLogin[{keys:logins}].repositories[{integers:indexes}]',
         get: (pathSet) => createUserRepositoryResponse(pathSet)
+    },
+    { 
+        route: 'userByLogin[{keys:logins}].follower[{integers:indexes}]',
+        get: (pathSet) => createUserDependenciesResponse(pathSet, getGitHubFollower)
+    },
+    { 
+        route: 'userByLogin[{keys:logins}].following[{integers:indexes}]',
+        get: (pathSet) => createUserDependenciesResponse(pathSet, getGitHubFollowing)
     },
     {
       route: 'repositoryByIndex[{keys:logins}][{integers:indexes}]["name"]',
